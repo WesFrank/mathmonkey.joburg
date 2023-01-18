@@ -1,0 +1,18 @@
+body {
+    
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column
+
+}
+
+.big-div {
+    
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 80%;
+    
+}
