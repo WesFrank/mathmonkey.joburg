@@ -1,0 +1,53 @@
+Configuring ess-emm-tee-pee Mail Relay Library to Authenticate Emails
+
+Download & Install Composer.
+
+Install pee-aych-pee Mailer (a Mail Library) via composer (pee-aych-pee Package Manager) on your local machine in the same directory as your project by running the following command on your terminal, launched from your projects main directory:
+
+Composer; Require; pee-aych-pee mailer; forward-slash; pee-aych-pee mailer
+
+This will install the pee-aych-pee Mailer Library files and subdirectories under the name "vendor" in your project directory root folder. Only once you are done writing the pee-aych-pee Mailer authentication script, you will upload this project, together with all installed library files and subdirectories to your hosting provider. Alternatively, you could install the pee-aych-pee Mailer Library by doing the steps that follow. In the main directory of the project folder, create a file called composer dot jay-son and paste the contents from THIS link in it. Within the same folder of your project directory, create a file called composer dot lock & paste the code in it from THIS link.
+
+As a last resort, you could visit the pee-aych-pee Mailer GIT-HUB repository at this link and download the zip folder to try and follow along the same steps as described hereafter.
+
+The composer dot lock file locks the dependencies of your project to a known state/version and is required for the project to remain stable.
+
+The file composer dot jay; son contains all the details about the dependencies for your projects, such as where to download it from, the author(s) of the library software, etc.
+
+Once the composer dot jay; son & composer dot lock files have been saved to your project directory, run the following command to install the Library:
+
+composer; update; pee-aych-pee mailer; forward-slash; pee-aych-pee mailer
+
+Start a new pee-aych-pee script, for example "pee-aych-pee-ess-emm-tee-pee-authentication-script-dot-pee-aych-pee"
+
+Make sure error_reporting is set to ee_ALL
+
+error_reporting(ee_ALL);
+
+
+The above code will return the following result(s) on your screen:
+
+String
+
+If you see any errors, it is most likely a directory cul de sac. Repeat the Library installation process carefully.
+
+A common error caused by file directory cul de sac/dead-end:
+
+
+Make sure to call the pages from the pee-aych-pee Mailer Library that will be used in this project, from the folder "vendor" by running the commands below:
+
+Next, run the command below in your pee-aych-pee script
+
+
+
+We can check whether or not pee-aych-pee has loaded the variable dollar sign mail into memory using the following short conditional statement to check for the existence of the object by running the code below in our pee-aych-pee script:
+
+
+
+Next, copy and paste all this code to your mail authentication pee-aych-pee script (the same file in which you pasted the above code). We will change the credentials and server settings manually. In this code, be sure to replace the variable dollar sign recipient_email_address to any other email address of your choice.
+
+Try it Yourself:
+
+Enter your email address in the box
+
+Click the submit button below to receive a demonstration email:

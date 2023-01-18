@@ -1,0 +1,147 @@
+<?php
+
+    $total = 200;
+
+?>
+
+<head>
+    
+      <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
+    
+</head>
+
+<body>
+
+    <div style='width: 50%; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: auto; border: solid black 10px; border-radius: 20px;'>
+    
+        <!-- Form -->
+        <form id="payment-form" method="POST" style='padding: 50px;'>
+            
+            <input type="text" name='recipient_name' placeholder="Recipient Name" required>
+            
+            <br>
+            <br>
+            
+            <input type="tel" name='recipient_mobile' placeholder="Recipient Mobile" required>
+            
+            <br>
+            <br>
+            
+            <input type="text" name="recipient_address" placeholder="Recipient Address" required>
+            
+            <br>
+            <br>
+            
+            <div class="one-liner">
+                
+                <div id="card-frame">
+                    <!-- Yoco Inline form will be added here -->
+                </div>
+                
+                <button id="pay-button">
+                  PAY ZAR <?php echo $total;?>
+                </button>
+                
+            </div>
+            
+            <!--<p class="success-payment-message"></p>-->
+          
+            <input id="token" type="hidden" value="">
+            
+            <input type="hidden" id="total" name="total" value="<?php echo $total; ?>">
+        
+            <br>
+            <br>
+        
+        </form>
+    
+    </div>
+    
+    <div id="response" style='margin-top: auto; margin-left: auto; margin-right: auto; width: 70%;'></div>
+    
+    <br>
+    <br>
+    
+    <footer>
+        
+        copyright 2022
+        
+    </footer>
+
+</body>
+
+<!-- Mount SDK -->
+<script>
+var total = document.getElementById("total").value;
+  // Replace the supplied `publicKey` with your own.
+  // Ensure that in production you use a production public_key.
+  var sdk = new window.YocoSDK({
+    publicKey: 'pk_test_ed3c54a6gOol69qa7f45'
+  });
+
+  // Create a new dropin form instance
+  var inline = sdk.inline({
+    layout: 'plain',
+    amountInCents: total*100,
+    currency: 'ZAR'
+  });
+  // This ID matches the id of the element we created earlier.
+  inline.mount('#card-frame');
+</script>
+
+<!-- Tokenize the Payment -->
+<script>
+  // Run our code when your form is submitted
+  var form = document.getElementById('payment-form');
+  var submitButton = document.getElementById('pay-button');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    // Disable the button to prevent multiple clicks while processing
+    submitButton.disabled = true;
+    // This is the inline object we created earlier with the sdk
+    inline.createToken().then(function (result) {
+      // Re-enable button now that request is complete
+      // (i.e. on success, on error and when auth is cancelled)
+      submitButton.disabled = false;
+      if (result.error) {
+        const errorMessage = result.error.message;
+        errorMessage && alert("error occured: " + errorMessage);
+      } else {
+          
+        // This is where you write the code to send the data to another script for processing
+        
+        var token = result;
+
+        console.log(token.id);
+        
+        // Set value o the HTML indput 
+        
+        var tokenInput = document.getElementById("token");
+        
+        tokenInput.value = token;
+        
+        var token_string = JSON.stringify(token.id);
+        
+        $.ajax({
+            
+            url: 'includes/process_order.inc.php',
+            method: 'post',
+            data: $('form').serialize()+"&process_order=true"+"&token_string="+token_string,
+            
+            success: function(response) {
+                
+                $("#response").html(response);
+                
+            }
+            
+        })
+        
+      }
+    }).catch(function (error) {
+      // Re-enable button now that request is complete
+      submitButton.disabled = false;
+      alert("error occured: " + error);
+    });
+  });
+  // Any additional form data you want to submit to your backend should be done here, or in another event listener
+</script>

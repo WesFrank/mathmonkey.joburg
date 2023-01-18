@@ -1,0 +1,40 @@
+$recipient_email_address = your_personal_email_address@gmail.com;
+
+$mail->SMTPDebug = true; // Enable Debug
+$mail->isSMTP(); // Send using SMTP
+
+// Set the SMTP Host Server to Send Emails through
+$mail->Host = 'voltar.aserv.co.za';
+
+$mail->SMTPAuth = true;
+
+$mail->Username = 'your_domain.com';
+$mail->Password = 'your_password_@_1234';
+
+// Enable SSL encryption
+$mail->SMTPSecure = "ssl";
+
+$mail->Port = 465;
+
+// From
+
+$mail->setFrom('user_name@your_domain.com', 'Mailer');
+
+// To // Recipients
+
+$mail->addAddress($recipient_email_address);
+
+// Headers
+$headers = 'From: user_name@your_domain.com' . "\r\n";
+$headers .= 'Reply-To: user_name@your_domain.com' . "\r\n";
+
+// Content
+$body = ' <p> This is an automated email.</p>';
+
+$mail->isHTML(true); // Set email format to HTML
+$mail->Subject = 'Automail';
+$mail->Body = $body;
+
+$mail->AddAttachment('path/to/attachment/file_name.file_format' , 'file_name.file_format');
+
+$mail->send();
