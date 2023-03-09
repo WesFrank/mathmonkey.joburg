@@ -70,12 +70,12 @@
     $mail->isSMTP(); // Send using SMTP
     
     // Set the SMTP Host Server to Send Emails through
-    $mail->Host = 'voltar.aserv.co.za';
+    $mail->Host = '';
     
     $mail->SMTPAuth = true;
     
     $mail->Username = 'mathmonkey@mathmonkey.joburg';
-    $mail->Password = '12113sAs12Ww*#';
+    $mail->Password = '';
     
     // Enable SSL encryption
     $mail->SMTPSecure = "ssl";
